@@ -202,7 +202,7 @@ void ADS131a0x_PowerOnInit(void)
   ADS131A0x_WRITE_REG_8_bit(0x40|A_SYS_CFG, 0x70); //enable external reference volatage (4.0v)  
   ADS131A0x_WRITE_REG_8_bit(0x40|D_SYS_CFG, 0x3C); //Dynamic device words per frame for the ADS131a0x & disable CRC ---3C (default)
   ADS131A0x_WRITE_REG_8_bit(0x40|CLK1, 0x02);      //ADC CLK1  fICLK = fCLKIN(16.384 MHz) / 2   
-  ADS131A0x_WRITE_REG_8_bit(0x40|CLK2, 0x80);      //fMOD = fICLK / 2  (0010) -----------fDATA = fMOD/4096 (0000 - OSR bits) --> 0x20: (500 Hz -- 0x40): (250 Hz --- 0x80)
+  ADS131A0x_WRITE_REG_8_bit(0x40|CLK2, 0x60);      //(1000Hz --> 0x20): (500 Hz -- 0x40): (333.33Hz --- 0x60): (250 Hz --- 0x80)
   ADS131A0x_WRITE_REG_8_bit(0x40|ADC_ENA, 0x0F);   //ADC CHANNEL ENABLE ALL  
   //ADS131A0x_WRITE_REG_8_bit(0x40|ADS131a0x_ADC1, 0x00);   //ADC1
   //ADS131A0x_WRITE_REG_8_bit(0x40|ADS131a0x_ADC2, 0x00);   //ADC2
@@ -269,20 +269,17 @@ uint8_t ADS131A0x_READY_FUNC(void)
   return 1;
 }
 
-//uint8_t count = 0;
 uint8_t* READ_ADS131A0x_Value(void)
 {
-  static uint8_t tx[10] = {0x00};
+  static uint8_t tx[SPI_BUFFER_SIZE] = {0x00};
   
-  //if(ADS131A0x_READY())
-  //{
   while(nrf_gpio_pin_read(DRDY) != 0x00);
 	ADS131a0x_CS(0);
 	memset(m_rx_buf, 0, sizeof(m_rx_buf));
 	spi_xfer_done = false;
 
-	// data include 15 bytes: 1st 3 bytes for stt + next 12 bytes for 4 channels
-	APP_ERROR_CHECK(nrf_drv_spi_transfer(&spi, tx, 10, m_rx_buf, 10)); 
+	// data include 15 bytes: 1st 3 bytes for stt + next 6 bytes for 2 channels
+	APP_ERROR_CHECK(nrf_drv_spi_transfer(&spi, tx, SPI_BUFFER_SIZE, m_rx_buf, SPI_BUFFER_SIZE)); 
 
 	while (!spi_xfer_done)
 	{
@@ -291,11 +288,8 @@ uint8_t* READ_ADS131A0x_Value(void)
 
 	NRF_LOG_FLUSH();
 	ADS131a0x_CS(1);
-	//count = count +1;
-	//m_rx_buf[SPI_buffer_size] = count;
 	return m_rx_buf;
 
- // }
 }
 
 uint32_t* PROCESS_ADS131A0x_Value (uint8_t* data)
