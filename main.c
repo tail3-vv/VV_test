@@ -262,7 +262,7 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 	case BLE_NUS_EVT_COMM_STARTED:
 	  NRF_LOG_INFO("ECG_A_NOTIFICATION_ENABLED");
 	  isNotiEnable = true;
-	  nrf_delay_ms(150);
+	  //nrf_delay_ms(150);
 	  count = 0;
 	  break;
 

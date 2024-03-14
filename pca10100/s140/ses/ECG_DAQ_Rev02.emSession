@@ -59,7 +59,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="19" y="278" useTextEdit="1" path="../../../main.c" left="0" selected="1" top="259" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="18" y="264" useTextEdit="1" path="../../../main.c" left="0" selected="1" top="259" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="38" y="11307" useTextEdit="1" path="../config/sdk_config.h" left="0" top="11294" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="27" y="38" useTextEdit="1" path="../../../Hardware/ADS131a0x.c" left="0" top="38" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="35" y="188" useTextEdit="1" openedFrom="D:/WORKS/Vena Vitals/03_2_ECG-DAQ FW/nRF5_SDK_17.1.0_ddde560/examples/VV_projects/ECG_DAQ_Rev02/main.c" path="../../../../../../components/ble/ble_services/ble_nus/ble_nus.c" left="0" top="178" codecName="Default"/>
