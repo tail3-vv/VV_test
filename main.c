@@ -766,8 +766,8 @@ int main(void)
 {
     uint32_t err_code;
     bool erase_bonds;
-    
-    uint8_t* ADC_value = (uint8_t*)malloc(10*sizeof(uint8_t));
+    uint8_t ADC_data_len = SPI_BUFFER_SIZE + 1;
+    uint8_t* ADC_value = (uint8_t*)malloc(ADC_data_len*sizeof(uint8_t));
     // Initialize.
     uart_init();
     nrf_gpio_cfg_input(RX_PIN_NUMBER, NRF_GPIO_PIN_PULLUP);
@@ -799,9 +799,9 @@ int main(void)
       {
 	ADC_value = (uint8_t*)READ_ADS131A0x_Value();
 	
-	ADC_value[9] = count;
+	ADC_value[ADC_data_len - 1] = count;
 	
-	err_code = ble_nus_data_send(&m_nus, ADC_value, 10, m_conn_handle);
+	err_code = ble_nus_data_send(&m_nus, ADC_value, ADC_data_len, m_conn_handle);
 
 	//if(err_code == 100){
 	//  led_g_toggle();
@@ -809,9 +809,9 @@ int main(void)
 
 	while(err_code == NRF_ERROR_RESOURCES)
 	{
-	  err_code = ble_nus_data_send(&m_nus, ADC_value, 10, m_conn_handle);
+	  err_code = ble_nus_data_send(&m_nus, ADC_value, ADC_data_len, m_conn_handle);
 	}
-	//NRF_LOG_INFO("ADC value: %d\r\n", count);
+	NRF_LOG_INFO("ADC value: %d\r\n", count);
 	//NRF_LOG_INFO("ADC value: %d\r\n", ADC_value[3]);
 	count = count +1;
 	free(ADC_value);

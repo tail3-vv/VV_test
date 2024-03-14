@@ -15,6 +15,9 @@
 *.lst
 *.lnp
 *.bak
+*.elf
+*.hex
+*.map
 
 *.ini
 *.iex
@@ -26,4 +29,5 @@
 **/_viminfo
 **/_vimtags
 _build/
+pca10100/s140/ses/Output/
 RTE/
