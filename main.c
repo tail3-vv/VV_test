@@ -406,6 +406,7 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
             //err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
             //APP_ERROR_CHECK(err_code);
 	    led_g_on();
+	    nrf_gpio_pin_set(21);
             break;
         case BLE_ADV_EVT_IDLE:
             sleep_mode_enter();
