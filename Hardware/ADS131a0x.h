@@ -18,7 +18,7 @@
 static const nrf_drv_spi_t spi = NRF_DRV_SPI_INSTANCE(SPI_INSTANCE);  /**< SPI instance. */
 static volatile bool spi_xfer_done;  /**< Flag used to indicate that SPI instance completed the transfer. */
 
-#define SPI_BUFFER_SIZE  6
+#define SPI_BUFFER_SIZE  9
 static uint8_t       m_tx_buf[SPI_BUFFER_SIZE];    /*!< SPI tx buffer */
 static uint8_t       m_rx_buf[SPI_BUFFER_SIZE];    /**< RX buffer. */
 static const uint8_t m_length = sizeof(m_tx_buf);        /**< Transfer length. */ 
