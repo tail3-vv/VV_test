@@ -405,8 +405,8 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
         case BLE_ADV_EVT_FAST:
             //err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
             //APP_ERROR_CHECK(err_code);
-	    led_g_on();
-	    nrf_gpio_pin_set(21);
+	    //led_g_on();
+	    nrf_gpio_pin_set(20);
             break;
         case BLE_ADV_EVT_IDLE:
             sleep_mode_enter();
@@ -787,6 +787,7 @@ int main(void)
     nrf_gpio_pin_clear(LEDG_PIN_NUMBER);
     ADS131a0x_SPI_Init();
     ADS131a0x_PowerOnInit();
+    nrf_gpio_cfg_output(20); 
     nrf_gpio_cfg_output(21); 
     buttons_leds_init(&erase_bonds);
     power_management_init();
