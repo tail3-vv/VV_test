@@ -787,8 +787,8 @@ int main(void)
     nrf_gpio_pin_clear(LEDG_PIN_NUMBER);
     ADS131a0x_SPI_Init();
     ADS131a0x_PowerOnInit();
-    nrf_gpio_cfg_output(20); 
-    nrf_gpio_cfg_output(21); 
+    nrf_gpio_cfg_output(31); 
+    nrf_gpio_cfg_output(30); 
     buttons_leds_init(&erase_bonds);
     power_management_init();
     ble_stack_init();

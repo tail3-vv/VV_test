@@ -201,7 +201,7 @@ void ADS131a0x_PowerOnInit(void)
   
   ADS131A0x_WRITE_REG_8_bit(0x40|A_SYS_CFG, 0x70); //enable external reference volatage (4.0v)  
   ADS131A0x_WRITE_REG_8_bit(0x40|D_SYS_CFG, 0x3C); //Dynamic device words per frame for the ADS131a0x & disable CRC ---3C (default)
-  ADS131A0x_WRITE_REG_8_bit(0x40|CLK1, 0x04);      //ADC CLK1  fICLK = fCLKIN(16.384 MHz) / 2  -> 0x02 -------- fICLK = fCLKIN(16.384 MHz) / 4 --> 0x04
+  ADS131A0x_WRITE_REG_8_bit(0x40|CLK1, 0x02);      //ADC CLK1  fICLK = fCLKIN(16.384 MHz) / 2  -> 0x02 -------- fICLK = fCLKIN(16.384 MHz) / 4 --> 0x04
   ADS131A0x_WRITE_REG_8_bit(0x40|CLK2, 0x80);      //(1000Hz --> 0x20): (500 Hz -- 0x40): (333.33Hz --- 0x60): (250 Hz --- 0x80): (125 Hz -- 0x80 - updated CLK1)
   ADS131A0x_WRITE_REG_8_bit(0x40|ADC_ENA, 0x0F);   //ADC CHANNEL ENABLE ALL  
   //ADS131A0x_WRITE_REG_8_bit(0x40|ADS131a0x_ADC1, 0x00);   //ADC1
