@@ -787,8 +787,8 @@ int main(void)
     nrf_gpio_pin_clear(LEDG_PIN_NUMBER);
     ADS131a0x_SPI_Init();
     ADS131a0x_PowerOnInit();
-    nrf_gpio_cfg_output(31); 
-    nrf_gpio_cfg_output(30); 
+    nrf_gpio_cfg_output(LEDG_PIN_NUMBER); 
+    nrf_gpio_cfg_output(LEDR_PIN_NUMBER); 
     buttons_leds_init(&erase_bonds);
     power_management_init();
     ble_stack_init();
@@ -818,7 +818,7 @@ int main(void)
 	{
 	  err_code = ble_nus_data_send(&m_nus, ADC_value, ADC_data_len, m_conn_handle);
 	}
-	NRF_LOG_INFO("ADC value: %d\r\n", count);
+	//NRF_LOG_INFO("ADC value: %d\r\n", count);
 	//NRF_LOG_INFO("ADC value: %d\r\n", ADC_value[3]);
 	count = count +1;
 	free(ADC_value);
