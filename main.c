@@ -268,7 +268,7 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 
 	case BLE_NUS_EVT_TX_RDY:
 	  led_counter ++;
-	  if(led_counter ==70){
+	  if(led_counter == 125){ // link every 1sec
 	    led_g_toggle();
 	    led_counter = 0;
 	  }
