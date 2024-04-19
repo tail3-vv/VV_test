@@ -268,6 +268,7 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 
 	case BLE_NUS_EVT_TX_RDY:
 	  led_counter ++;
+	  //count += 1;
 	  if(led_counter == 125){ // link every 1sec
 	    led_g_toggle();
 	    led_counter = 0;
@@ -814,13 +815,13 @@ int main(void)
 	
 	err_code = ble_nus_data_send(&m_nus, ADC_value, ADC_data_len, m_conn_handle);
 
-	while(err_code == NRF_ERROR_RESOURCES)
-	{
-	  err_code = ble_nus_data_send(&m_nus, ADC_value, ADC_data_len, m_conn_handle);
-	}
+	//while(err_code == NRF_ERROR_RESOURCES)
+	//{
+	//  err_code = ble_nus_data_send(&m_nus, ADC_value, ADC_data_len, m_conn_handle);
+	//}
 	//NRF_LOG_INFO("ADC value: %d\r\n", count);
 	//NRF_LOG_INFO("ADC value: %d\r\n", ADC_value[3]);
-	count = count +1;
+	count += 1;
 	free(ADC_value);
 
       }
