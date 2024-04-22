@@ -125,6 +125,7 @@ static ble_uuid_t m_adv_uuids[]          =                                      
   bool isNotiEnable = false;
   uint8_t led_counter = 0;
   uint8_t count = 0;
+  uint8_t bat_level = 90;
 // Define the structure for the characteristic value
 typedef struct {
 
@@ -777,7 +778,7 @@ int main(void)
 {
     uint32_t err_code;
     bool erase_bonds;
-    uint8_t ADC_data_len = SPI_BUFFER_SIZE + 1;
+    uint8_t ADC_data_len = SPI_BUFFER_SIZE + 2;
     uint8_t* ADC_value = (uint8_t*)malloc(ADC_data_len*sizeof(uint8_t));
     // Initialize.
     uart_init();
@@ -811,7 +812,8 @@ int main(void)
       {
 	ADC_value = (uint8_t*)READ_ADS131A0x_Value();
 	
-	ADC_value[ADC_data_len - 1] = count;
+	ADC_value[ADC_data_len - 1] = bat_level;
+	ADC_value[ADC_data_len - 2] = count;
 	
 	err_code = ble_nus_data_send(&m_nus, ADC_value, ADC_data_len, m_conn_handle);
 
