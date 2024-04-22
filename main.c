@@ -811,9 +811,9 @@ int main(void)
       if(isNotiEnable)
       {
 	ADC_value = (uint8_t*)READ_ADS131A0x_Value();
-	
-	ADC_value[ADC_data_len - 1] = bat_level;
-	ADC_value[ADC_data_len - 2] = count;
+	count += 1;
+	ADC_value[ADC_data_len - 2] = bat_level;
+	ADC_value[ADC_data_len - 1] = count;
 	
 	err_code = ble_nus_data_send(&m_nus, ADC_value, ADC_data_len, m_conn_handle);
 
@@ -823,7 +823,7 @@ int main(void)
 	//}
 	//NRF_LOG_INFO("ADC value: %d\r\n", count);
 	//NRF_LOG_INFO("ADC value: %d\r\n", ADC_value[3]);
-	count += 1;
+	
 	free(ADC_value);
 
       }
