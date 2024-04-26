@@ -232,12 +232,12 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 	  p_data_char = p_evt->params.rx_data.p_data;
 
 	  if (p_data_char->data_write == 49){
-      	  for (i = 0; i < 20; i++){
-      	    nrf_gpio_pin_toggle(21); 
-      	    nrf_delay_ms(100);
-      	  }
-
-	  NVIC_SystemReset();
+	    /*for (i = 0; i < 20; i++){
+	      nrf_gpio_pin_toggle(21); 
+	      nrf_delay_ms(100);
+	    }
+	    */
+	    NVIC_SystemReset();
 	  }
 
           for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
